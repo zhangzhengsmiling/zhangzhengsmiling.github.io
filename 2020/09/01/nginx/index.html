@@ -16,15 +16,20 @@
 <meta property="og:site_name" content="z.z">
 <meta property="og:description" content="1. nginx常用指令 nginx查看版本号 nginx -v  nginx启动命令 nginx  nginx关闭命令 nginx -s stop  检查配置文件 nginx -t  重新加载配置文件 nginx -s reload">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/nginx/image-20200901001538807.png">
+<meta property="og:image" content="http://example.com/img/nginx/image-20200831233609801.png">
 <meta property="article:published_time" content="2020-09-01T14:03:38.670Z">
-<meta property="article:modified_time" content="2021-01-29T15:06:50.222Z">
+<meta property="article:modified_time" content="2021-02-18T14:47:54.300Z">
 <meta property="article:author" content="zhangzhengsmiling">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="项目部署">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/nginx/image-20200901001538807.png">
   
     <link rel="alternative" href="/atom.xml" title="z.z" type="application/atom+xml">
   
   
-    <link rel="icon" href="/assets/avatar.jpg">
+    <link rel="icon" href="/img/avatar.jpg">
   
   
 <link rel="stylesheet" href="/css/style.css">
@@ -59,7 +64,7 @@
 		</div>
 		<a href="/" class="profilepic">
 			
-			<img src="/assets/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			<img src="/img/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
 			
 		</a>
 
@@ -128,7 +133,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a>
+						<a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" style="font-size: 10px;">单点登录</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a>
 					</div>
 				</section>
 				
@@ -158,7 +163,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img lazy-src="/assets/avatar.jpg" class="js-avatar">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author"></h1>
@@ -210,7 +215,15 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" rel="tag">项目部署</a></li></ul>
+	</div>
+
         
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+	</div>
+
 
         
           
@@ -248,30 +261,21 @@
 </ul>
 <a id="more"></a>
 
-<h3 id="2-Nginx配置文件-nginx-conf"><a href="#2-Nginx配置文件-nginx-conf" class="headerlink" title="2. Nginx配置文件(nginx.conf)"></a>2. Nginx配置文件(nginx.conf)</h3><p>​    nginx配置文件有三个模块组成，分别是全局模块，event模块以及http模块</p>
+<h3 id="2-nginx配置文件-nginx-conf"><a href="#2-nginx配置文件-nginx-conf" class="headerlink" title="2. nginx配置文件(nginx.conf)"></a>2. nginx配置文件(nginx.conf)</h3><p>​    nginx配置文件有三个模块组成，分别是全局模块，event模块以及http模块</p>
 <ul>
 <li><p>全局模块(主要设置nginx服务器整体运行的指令)</p>
-<hr>
 <p><strong><em>正常运行配置</em></strong></p>
-<p><strong>user $username;</strong>                               //指定运行worker进程的用户和组；<br><strong>pid /path/to/pid_file;</strong>                       //指定nginx守护进程的pid文件<br><strong>worker_rlimit_nofile NUMBER;</strong>    //设置所有worker进程最大可以打开的文件数，默认为1024；<br><strong>worker_rlimit_core SIZE;</strong>                //指明所有worker进程所能够使用的总体的最大核心文件大小，保持默认即可</p>
-<hr>
+<p>  <strong>user $username;</strong>                               //指定运行worker进程的用户和组；<br>  <strong>pid /path/to/pid_file;</strong>                       //指定nginx守护进程的pid文件<br>  <strong>worker_rlimit_nofile NUMBER;</strong>    //设置所有worker进程最大可以打开的文件数，默认为1024；<br>  <strong>worker_rlimit_core SIZE;</strong>                //指明所有worker进程所能够使用的总体的最大核心文件大小，保持默认即可</p>
 <p><strong><em>调试配置</em></strong></p>
-<p><strong>daemon {on|off};</strong>                               //是否已守护进程运行进程nginx，调试时应设置为off<br><strong>master_process {on|off};</strong>                 //是否以master/worker模型来运行nginx，调试时可以设置为off<br><strong>error_log  $path</strong>;                                 //配置错误日志</p>
-<hr>
+<p>  <strong>daemon {on|off};</strong>                               //是否已守护进程运行进程nginx，调试时应设置为off<br>  <strong>master_process {on|off};</strong>                 //是否以master/worker模型来运行nginx，调试时可以设置为off<br>  <strong>error_log  $path</strong>;                                 //配置错误日志</p>
 <p><strong><em>性能优化配置</em></strong></p>
-<p><strong>worker_processse auto;</strong>                         //启动N个worker进程，这里的N为了避免上下文切换，通常设置为cpu总核数-1或等于总t核数<br><strong>time_resolution INTERVAL;</strong>            //计时器解析度。降低此值，可减少gettimeofday()系统调用的次数<br><strong>worker_priority NUMBER;</strong>               //指明worker进程的NICE值（优先级）</p>
+<p>  <strong>worker_processse auto;</strong>                         //启动N个worker进程，这里的N为了避免上下文切换，通常设置为cpu总核数-1或等于总t核数<br>  <strong>time_resolution INTERVAL;</strong>            //计时器解析度。降低此值，可减少gettimeofday()系统调用的次数<br>  <strong>worker_priority NUMBER;</strong>               //指明worker进程的NICE值（优先级）</p>
 </li>
-</ul>
-<hr>
-<ul>
 <li><p>event模块(events模块主要影响nginx服务器与用户的网络连接)</p>
 <p><strong>use epoll;</strong>                                               //多路复用I/O中的一种方式，仅用于linux2.6以上内核，大大提升nginx性能<br><strong>accept_mutex {on|off};</strong>                      //master调度用户请求至各worker进程时使用的负载均衡锁，“on”表示能让多个worker轮流地、序列化地去响应新请求<br><strong>lock_file FILE;</strong>                                      //accept_nutex用到的互斥锁锁文件路径<br><strong>use [epoll | rtsig | select | poll];</strong>      //指明使用的事件模型，建议让nginx自行选择<br><strong>worker_connections 1024;</strong>                     //每个进程能够接受的最大连接数<br><strong>multi_accept on;</strong>                                 //尽可能多的接受请求</p>
 </li>
-</ul>
-<hr>
-<ul>
 <li><p>http模块(web服务相关配置)</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;            <span class="comment">## 协议级别</span></span><br><span class="line"> <span class="attribute">include</span> mime.types;</span><br><span class="line"> <span class="attribute">default_type</span> application/octet-stream;</span><br><span class="line"> <span class="attribute">keepalive_timeout</span> <span class="number">65</span>;</span><br><span class="line"> <span class="attribute">gzip</span> <span class="literal">on</span>;</span><br><span class="line"> <span class="attribute">sendfile</span> <span class="literal">on</span>;<span class="comment">##指定nginx是否调用sendfile函数（zero copy）来输出文件，对于普通应用必须设为on；</span></span><br><span class="line"> 					   <span class="comment">##如果用来进行下载等应用磁盘I/O重负载应用，可设置为OFF，以平衡磁盘与网络I/O处理速度，降低系统的uptime</span></span><br><span class="line"> 	<span class="attribute">autoindex</span> <span class="literal">on</span>;		<span class="comment">##开启目录列表访问，适合下载服务器，默认关闭</span></span><br><span class="line"> 	<span class="section">upstream</span> &#123;              <span class="comment">##负载均衡配置</span></span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line"> 	<span class="section">server</span> &#123;              <span class="comment">##服务器级别，每一个server类似于httpd中的一个&lt;VirtualHost,通俗来说就是一个网站&gt;</span></span><br><span class="line"> 		<span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">	 	<span class="attribute">server_name</span> localhost;</span><br><span class="line">		<span class="attribute">location</span> / &#123;           <span class="comment">##请求级别，类似与htt中的&lt;Location&gt;，用于定义URL与本地文件系统的映射关系</span></span><br><span class="line">		 	<span class="attribute">root</span> html;</span><br><span class="line">		 	<span class="attribute">index</span> index.html index.htm;</span><br><span class="line">	 	&#125;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;            <span class="comment">## 协议级别</span></span><br><span class="line"><span class="attribute">include</span> mime.types;</span><br><span class="line"><span class="attribute">default_type</span> application/octet-stream;</span><br><span class="line"><span class="attribute">keepalive_timeout</span> <span class="number">65</span>;</span><br><span class="line"><span class="attribute">gzip</span> <span class="literal">on</span>;</span><br><span class="line"><span class="attribute">sendfile</span> <span class="literal">on</span>;<span class="comment">##指定nginx是否调用sendfile函数（zero copy）来输出文件，对于普通应用必须设为on；</span></span><br><span class="line">            <span class="comment">##如果用来进行下载等应用磁盘I/O重负载应用，可设置为OFF，以平衡磁盘与网络I/O处理速度，降低系统的uptime</span></span><br><span class="line">  <span class="attribute">autoindex</span> <span class="literal">on</span>;		<span class="comment">##开启目录列表访问，适合下载服务器，默认关闭</span></span><br><span class="line">  <span class="section">upstream</span> &#123;              <span class="comment">##负载均衡配置</span></span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="section">server</span> &#123;              <span class="comment">##服务器级别，每一个server类似于httpd中的一个&lt;VirtualHost,通俗来说就是一个网站&gt;</span></span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="attribute">location</span> / &#123;           <span class="comment">##请求级别，类似与htt中的&lt;Location&gt;，用于定义URL与本地文件系统的映射关系</span></span><br><span class="line">      <span class="attribute">root</span> html;</span><br><span class="line">      <span class="attribute">index</span> index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>keepalive_timeout  设置单个http请求最长的连接时长，单位为s;</p>
 <p>该值设置过小可能会对大文件上传造成影响，导致文件上传失败</p>
@@ -280,8 +284,10 @@
 <li><p>nginx文件缓存</p>
 <ol>
 <li><p>expires设置缓存过期时间</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="attribute">location</span> <span class="regexp">~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span> &#123;</span><br><span class="line">  <span class="comment">#过期时间为30天，</span></span><br><span class="line">  <span class="comment">#图片文件不怎么更新，过期可以设大一点，</span></span><br><span class="line">  <span class="comment">#如果频繁更新，则可以设置得小一点。</span></span><br><span class="line">	<span class="attribute">expires</span> <span class="number">30d</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ .*\.(js|css)$</span> &#123;</span><br><span class="line">	<span class="attribute">expires</span> <span class="number">10d</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="attribute">location</span> <span class="regexp">~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span> &#123;</span><br><span class="line">  <span class="comment">#过期时间为30天，</span></span><br><span class="line">  <span class="comment">#图片文件不怎么更新，过期可以设大一点，</span></span><br><span class="line">  <span class="comment">#如果频繁更新，则可以设置得小一点。</span></span><br><span class="line">  <span class="attribute">expires</span> <span class="number">30d</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ .*\.(js|css)$</span> &#123;</span><br><span class="line">  <span class="attribute">expires</span> <span class="number">10d</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>Cache-control：通过add_header来设置</p>
+</li>
+</ol>
 <ul>
 <li><p>no-store</p>
 <p>彻底禁用缓冲，所有内容都不会被缓存到缓存或临时文件中。</p>
@@ -297,10 +303,8 @@
 </li>
 <li><p>max-age=xxx</p>
 <p>缓存的内容将在 xxx 秒后失效，这个选项只在HTTP1.1可用，并如果和Last-Modified一起使用时，优先级较高。</p>
-</li>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">  <span class="attribute">index</span> index.html;</span><br><span class="line">  <span class="attribute">try_files</span> $uri $uri/ /index.html;</span><br><span class="line">  <span class="attribute">add_header</span> Cache-Control <span class="literal">no</span>-cache;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">  <span class="attribute">index</span> index.html;</span><br><span class="line">  <span class="attribute">try_files</span> $uri $uri/ /index.html;</span><br><span class="line">	<span class="attribute">add_header</span> Cache-Control <span class="literal">no</span>-cache;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
 </li>
 </ul>
 <p><strong><em>server</em></strong>指令可定义一个虚拟主机</p>
@@ -320,12 +324,12 @@
 </ol>
 </li>
 <li><p>前后端分离部署</p>
-<p>![image-20200901001538807](/Users/zhangzhengsmiling/Library/Application Support/typora-user-images/image-20200901001538807.png)</p>
+<p><img src="/img/nginx/image-20200901001538807.png" alt="image-20200901001538807"></p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">8082</span>;</span><br><span class="line">  <span class="attribute">server_name</span> dt-con-paltform-front;</span><br><span class="line">  <span class="attribute">root</span> /dtstack/front/dt-con-platform-front/dist;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">index</span> index.html;</span><br><span class="line">    <span class="attribute">try_files</span> $uri $uri/ /index.html;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> /api/v1/front/ &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://172.16.8.194:8006;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="attribute">location</span> /v3/place/ &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://restapi.amap.com;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 <li><p>负载均衡</p>
-<p>![image-20200831233609801](/Users/zhangzhengsmiling/Library/Application Support/typora-user-images/image-20200831233609801.png)</p>
+<p><img src="/img/nginx/image-20200831233609801.png" alt="image-20200831233609801"></p>
 <ul>
 <li><p>负载均衡优缺点</p>
 <p>缺点：需要占用一定数量的服务器资源</p>
@@ -349,9 +353,9 @@
 </ul>
 </li>
 </ul>
-</li>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> loader-server &#123;</span><br><span class="line">  <span class="attribute">server</span> localhost:<span class="number">8000</span>;</span><br><span class="line">  <span class="attribute">server</span> localhost:<span class="number">8001</span>;</span><br><span class="line">  <span class="attribute">server</span> localhost:<span class="number">8002</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">8004</span>;</span><br><span class="line">  <span class="attribute">server_name</span> loader;</span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://loader-server;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> loader-server &#123;</span><br><span class="line">  <span class="attribute">server</span> localhost:<span class="number">8000</span>;</span><br><span class="line">  <span class="attribute">server</span> localhost:<span class="number">8001</span>;</span><br><span class="line">  <span class="attribute">server</span> localhost:<span class="number">8002</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">8004</span>;</span><br><span class="line">  <span class="attribute">server_name</span> loader;</span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">  	<span class="attribute">proxy_pass</span> http://loader-server;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
+
       
     </div>
     

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>单点登录 | z.z</title>
+
+  <!-- keywords -->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是单点登录 单点登录英文全称Single Sign On，简称就是SSO。  它的解释是：在多个应用系统中，只需要登录一次，就可以访问其他相互信任的应用系统。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单点登录">
+<meta property="og:url" content="http://example.com/2020/10/10/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/index.html">
+<meta property="og:site_name" content="z.z">
+<meta property="og:description" content="什么是单点登录 单点登录英文全称Single Sign On，简称就是SSO。  它的解释是：在多个应用系统中，只需要登录一次，就可以访问其他相互信任的应用系统。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/sso/image-20201008231842150.png">
+<meta property="og:image" content="http://example.com/img/sso/image-20201008233436280.png">
+<meta property="og:image" content="http://example.com/img/sso/image-20201009000953906.png">
+<meta property="og:image" content="http://example.com/img/sso/image-20201009002142669.png">
+<meta property="og:image" content="http://example.com/img/sso/image-20201009003817975.png">
+<meta property="og:image" content="http://example.com/img/sso/image-20201009010640170.png">
+<meta property="article:published_time" content="2020-10-10T11:20:03.513Z">
+<meta property="article:modified_time" content="2021-02-18T14:10:37.428Z">
+<meta property="article:author" content="zhangzhengsmiling">
+<meta property="article:tag" content="单点登录">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/sso/image-20201008231842150.png">
+  
+    <link rel="alternative" href="/atom.xml" title="z.z" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/avatar.jpg">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+
+  
+<script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+
+  
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+
+  
+      <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("S47IVlRlFCY1hzR1MCkmmalB-gzGzoHsz", "uGmrMT48vQuPXPjwYX8BmuMw");</script>
+
+<script src="/js/Counter.js"></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+<body>
+  <div id="container">
+    <!-- <div id="particles-js"></div> -->
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div style="text-align: center; margin: 20px 0; font-size: 24px; font-weight: 550; font-family: 'Courier New', Courier, monospace;">
+			zheng.zhang
+		</div>
+		<a href="/" class="profilepic">
+			
+			<img src="/img/avatar.jpg" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/"></a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangzhengsmiling" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" style="font-size: 10px;">单点登录</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">项目部署</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide"></h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author"></h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangzhengsmiling" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-单点登录" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/10/10/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" class="article-date">
+  	<time datetime="2020-10-10T11:20:03.513Z" itemprop="datePublished">2020-10-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      单点登录
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" rel="tag">单点登录</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+	</div>
+
+
+        
+          
+<div class="counter-tag counter">
+    <span id="/2020/10/10/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" class="leancloud_visitors post-title-link"
+          style="font-size: 12px" data-flag-title="单点登录">
+         &nbsp;
+        view
+    </span>
+</div>
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="什么是单点登录"><a href="#什么是单点登录" class="headerlink" title="什么是单点登录"></a>什么是单点登录</h3><ul>
+<li><p>单点登录英文全称Single Sign On，简称就是SSO。</p>
+</li>
+<li><p>它的解释是：<strong>在多个应用系统中，只需要登录一次，就可以访问其他相互信任的应用系统。</strong></p>
+</li>
+</ul>
+<a id="more"></a>
+
+<p>  <img src="/img/sso/image-20201008231842150.png" alt="image-20201008231842150"></p>
+<ul>
+<li>SSO实现效果：当子系统需要登录时，系统跳转到sso登录页面；当sso登录以后，可以访问任意子系统</li>
+</ul>
+<h3 id="单一系统的登录"><a href="#单一系统的登录" class="headerlink" title="单一系统的登录"></a>单一系统的登录</h3><p><img src="/img/sso/image-20201008233436280.png" alt="image-20201008233436280"></p>
+<ul>
+<li>用户进入系统后，通过向后端发送token后者cookie（cookie里面存放的一般情况下是SessionId）的方式，校验用户是否处于登录状态，若处于登录状态，认证通过，进入系统</li>
+<li>若用户处于未登录状态下，则跳转登录页面，用户输入用户名密码后，有后端返回token或者写回cookie，完成用户登录</li>
+<li>用户退出登录时，向后端发送请求，同时清除前端token或者cookie的信息，即可完成用户登出</li>
+</ul>
+<h3 id="单点登录实现方案"><a href="#单点登录实现方案" class="headerlink" title="单点登录实现方案"></a>单点登录实现方案</h3><ol>
+<li><p>cookie共享机制实现sso</p>
+<ul>
+<li><p>IP + 端口号部署</p>
+<p><img src="/img/sso/image-20201009000953906.png" alt="image-20201009000953906"></p>
+<ul>
+<li>用户进入子系统时，前端会向服务端发送cookie，若cookie有效进入子系统，若cookie无效，跳转uic登录页面</li>
+<li>登录页面用户登录成功后，后端会写回cookie，并登录用户中心。当用户访问子系统时，通过cookie共享机制，能把cookie带给服务端</li>
+<li><font color="red">误区：</font>cookie是不能够跨域共享的，但浏览器实现的时候没有区分端口。因此对于cookie来说，同一个IP下，不同端口之间是能够进行共享的。</li>
+</ul>
+</li>
+<li><p>域名方式部署</p>
+<p><img src="/img/sso/image-20201009002142669.png" alt="image-20201009002142669"></p>
+<ul>
+<li>通过域名方式部署时，理论上是不同源的，域名不同，cookie是无法共享的。但cookie可以是设置domain，只要设置在.lzgcyz.com域下共享，就能够实现子域名共享</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>通过传递token的方式实现</p>
+<p><img src="/img/sso/image-20201009003817975.png" alt="image-20201009003817975"></p>
+<ul>
+<li>token可能会直接暴露在浏览器URL中</li>
+<li>另一方面需要考虑浏览器get请求支持的最大字符数</li>
+</ul>
+</li>
+<li><p>OAuth2实现标准的单点登录</p>
+<p><img src="/img/sso/image-20201009010640170.png" alt="image-20201009010640170"></p>
+</li>
+</ol>
+<ul>
+<li>用户直接访问子系统，若子系统中存在cookie或者token，且有效的情况下，直接访问；若认证失败，则先调用后端接口，获取重定向URL，跳转sso鉴权页面</li>
+<li>当进入鉴权页面时，校验sso系统登录状态，若sso登录成功，后端会返回一个重定向URL，带上授权码回跳子系统；若sso系统未登录，则会带上参数（可以通过query参数，或者另外的方式传递到登录页）跳转系统登录页。</li>
+<li>跳转登录页后，用户登录成功后，会带上参数跳转sso鉴权页面，此时sso已登录，后端会返回重定向URL，带上授权码，回跳子系统</li>
+<li>用户登出，子系统登出后需要保证sso系统退出，此时登出可能需要后端完成，也可能需要前端完成。</li>
+</ul>
+<p>Oauth2可参考相关文章<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html">理解OAuth 2.0</a></p>
+<hr>
+<h3 id="单点登录方案对比"><a href="#单点登录方案对比" class="headerlink" title="单点登录方案对比"></a>单点登录方案对比</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>概述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cookie共享</td>
+<td>受同源策略影响（适用于IP地址相同，端口不同或者部署域名顶级域名一致的情况）</td>
+</tr>
+<tr>
+<td>token传递</td>
+<td>token直接暴露在浏览器地址中，可做一次重定向处理，需要考虑get请求长度限制</td>
+</tr>
+<tr>
+<td>OAuth2</td>
+<td>比较标准化，但处理也稍微麻烦些</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/23/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          单元测试
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/11/%E5%9B%BE%E8%A1%A8%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">图表数据格式</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+<!-- <div class="duoshuo">
+	<div class="ds-thread" data-thread-key="单点登录" data-title="单点登录" data-url="http://example.com/2020/10/10/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/"></div>
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+</div> -->
+
+<!--PC版-->
+<style>
+	.wrap-word-gw {
+		color: #fff;
+	}
+	textarea.textarea-fw.textarea-bf {
+		color: #fff!important;
+	}
+	.build-floor-gw {
+		background: transparent!important;
+	}
+</style>
+<div style="width: 100%; height: 100%;">
+	<div class="" style="width: 90%;" id="SOHUCS" sid="单点登录"></div>
+</div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+	appid: 'cyviQPbMk',
+	conf: 'prod_05b30768a3e1678744671be122542ed1'
+});
+</script>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2021 zhangzhengsmiling
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
