@@ -2,49 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2021-01-23/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://zhangzhengsmiling.github.io/2021-01-23/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
     
     <lastmod>2021-02-19</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020-09-01/nginx/</loc>
+    <loc>https://zhangzhengsmiling.github.io/2020-09-01/nginx/</loc>
     
     <lastmod>2021-02-18</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020-10-10/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</loc>
+    <loc>https://zhangzhengsmiling.github.io/2020-10-10/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</loc>
     
     <lastmod>2021-02-18</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020-09-11/%E5%9B%BE%E8%A1%A8%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/</loc>
+    <loc>https://zhangzhengsmiling.github.io/2020-09-11/%E5%9B%BE%E8%A1%A8%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/</loc>
     
     <lastmod>2021-01-29</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2021-01-29/hello-world/</loc>
+    <loc>https://zhangzhengsmiling.github.io/2021-01-29/hello-world/</loc>
     
     <lastmod>2021-01-29</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/tags/index.html</loc>
+    <loc>https://zhangzhengsmiling.github.io/tags/index.html</loc>
     
     <lastmod>2021-01-29</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/categories/index.html</loc>
+    <loc>https://zhangzhengsmiling.github.io/categories/index.html</loc>
     
     <lastmod>2021-01-29</lastmod>
     
@@ -52,7 +52,7 @@
   
 
   <url>
-    <loc>http://example.com/</loc>
+    <loc>https://zhangzhengsmiling.github.io/</loc>
     <lastmod>2021-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -60,28 +60,28 @@
 
   
   <url>
-    <loc>http://example.com/tags/nginx/</loc>
+    <loc>https://zhangzhengsmiling.github.io/tags/nginx/</loc>
     <lastmod>2021-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</loc>
+    <loc>https://zhangzhengsmiling.github.io/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2021-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://zhangzhengsmiling.github.io/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2021-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</loc>
+    <loc>https://zhangzhengsmiling.github.io/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/</loc>
     <lastmod>2021-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -90,21 +90,21 @@
 
   
   <url>
-    <loc>http://example.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <loc>https://zhangzhengsmiling.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2021-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://zhangzhengsmiling.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2021-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%89%8D%E7%AB%AF/</loc>
+    <loc>https://zhangzhengsmiling.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2021-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
