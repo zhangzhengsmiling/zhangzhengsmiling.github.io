@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Nginx简介 | zhangzhengsmiling</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Nginx简介</h1><a id="logo" href="/.">zhangzhengsmiling</a><p class="description">stand on eminence and become farsighted</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Nginx简介</h1><div class="post-meta">2021-03-21<span> | </span><span class="category"><a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 1.5k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 5</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="ds-thread-count" href="/2021-03-21/nginx/#SOHUCS"><span id="changyan_count_unit" style="font-size: 15px; color: #6E7173;">0</span><span> 条评论</span></a><script src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js" async></script><div class="post-content"><p>本来nginx应该是运维的活，但无奈公司运维没那么靠谱。只能多学点东西，nginx开发环境的简单配置还是要稍微了解一下，特此做个简单的记录</p>
+<a id="more"></a>
+<h3 id="1-nginx常用指令"><a href="#1-nginx常用指令" class="headerlink" title="1. nginx常用指令"></a>1. nginx常用指令</h3><ul>
+<li><p>nginx查看版本号</p>
+<p><em>nginx -v</em></p>
+</li>
+<li><p>nginx启动命令</p>
+<p><em>nginx</em></p>
+</li>
+<li><p>nginx关闭命令</p>
+<p><em>nginx -s stop</em></p>
+</li>
+<li><p>检查配置文件</p>
+<p><em>nginx -t</em></p>
+</li>
+<li><p>重新加载配置文件</p>
+<p><em>nginx -s reload</em></p>
+</li>
+</ul>
+<h3 id="2-nginx配置文件-nginx-conf"><a href="#2-nginx配置文件-nginx-conf" class="headerlink" title="2. nginx配置文件(nginx.conf)"></a>2. nginx配置文件(nginx.conf)</h3><p>​    nginx配置文件有三个模块组成，分别是全局模块，event模块以及http模块</p>
+<ul>
+<li><p>全局模块(主要设置nginx服务器整体运行的指令)</p>
+<p><strong><em>正常运行配置</em></strong></p>
+<p>  <strong>user $username;</strong>                               //指定运行worker进程的用户和组；<br>  <strong>pid /path/to/pid_file;</strong>                       //指定nginx守护进程的pid文件<br>  <strong>worker_rlimit_nofile NUMBER;</strong>    //设置所有worker进程最大可以打开的文件数，默认为1024；<br>  <strong>worker_rlimit_core SIZE;</strong>                //指明所有worker进程所能够使用的总体的最大核心文件大小，保持默认即可</p>
+<p><strong><em>调试配置</em></strong></p>
+<p>  <strong>daemon {on|off};</strong>                               //是否已守护进程运行进程nginx，调试时应设置为off<br>  <strong>master_process {on|off};</strong>                 //是否以master/worker模型来运行nginx，调试时可以设置为off<br>  <strong>error_log  $path</strong>;                                 //配置错误日志</p>
+<p><strong><em>性能优化配置</em></strong></p>
+<p>  <strong>worker_processse auto;</strong>                         //启动N个worker进程，这里的N为了避免上下文切换，通常设置为cpu总核数-1或等于总t核数<br>  <strong>time_resolution INTERVAL;</strong>            //计时器解析度。降低此值，可减少gettimeofday()系统调用的次数<br>  <strong>worker_priority NUMBER;</strong>               //指明worker进程的NICE值（优先级）</p>
+</li>
+<li><p>event模块(events模块主要影响nginx服务器与用户的网络连接)</p>
+<p><strong>use epoll;</strong>                                               //多路复用I/O中的一种方式，仅用于linux2.6以上内核，大大提升nginx性能<br><strong>accept_mutex {on|off};</strong>                      //master调度用户请求至各worker进程时使用的负载均衡锁，“on”表示能让多个worker轮流地、序列化地去响应新请求<br><strong>lock_file FILE;</strong>                                      //accept_nutex用到的互斥锁锁文件路径<br><strong>use [epoll | rtsig | select | poll];</strong>      //指明使用的事件模型，建议让nginx自行选择<br><strong>worker_connections 1024;</strong>                     //每个进程能够接受的最大连接数<br><strong>multi_accept on;</strong>                                 //尽可能多的接受请求</p>
+</li>
+<li><p>http模块(web服务相关配置)</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;            <span class="comment">## 协议级别</span></span><br><span class="line"><span class="attribute">include</span> mime.types;</span><br><span class="line"><span class="attribute">default_type</span> application/octet-stream;</span><br><span class="line"><span class="attribute">keepalive_timeout</span> <span class="number">65</span>;</span><br><span class="line"><span class="attribute">gzip</span> <span class="literal">on</span>;</span><br><span class="line"><span class="attribute">sendfile</span> <span class="literal">on</span>;<span class="comment">##指定nginx是否调用sendfile函数（zero copy）来输出文件，对于普通应用必须设为on；</span></span><br><span class="line">            <span class="comment">##如果用来进行下载等应用磁盘I/O重负载应用，可设置为OFF，以平衡磁盘与网络I/O处理速度，降低系统的uptime</span></span><br><span class="line">  <span class="attribute">autoindex</span> <span class="literal">on</span>;		<span class="comment">##开启目录列表访问，适合下载服务器，默认关闭</span></span><br><span class="line">  <span class="section">upstream</span> &#123;              <span class="comment">##负载均衡配置</span></span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="section">server</span> &#123;              <span class="comment">##服务器级别，每一个server类似于httpd中的一个&lt;VirtualHost,通俗来说就是一个网站&gt;</span></span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost;</span><br><span class="line">    <span class="attribute">location</span> / &#123;           <span class="comment">##请求级别，类似与htt中的&lt;Location&gt;，用于定义URL与本地文件系统的映射关系</span></span><br><span class="line">      <span class="attribute">root</span> html;</span><br><span class="line">      <span class="attribute">index</span> index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>keepalive_timeout  设置单个http请求最长的连接时长，单位为s;</p>
+<p>该值设置过小可能会对大文件上传造成影响，导致文件上传失败</p>
+<p>设置过大则会引起部分无效的http连接无法释放</p>
+</li>
+<li><p>nginx文件缓存</p>
+<ol>
+<li><p>expires设置缓存过期时间</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="attribute">location</span> <span class="regexp">~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span> &#123;</span><br><span class="line">  <span class="comment">#过期时间为30天，</span></span><br><span class="line">  <span class="comment">#图片文件不怎么更新，过期可以设大一点，</span></span><br><span class="line">  <span class="comment">#如果频繁更新，则可以设置得小一点。</span></span><br><span class="line">  <span class="attribute">expires</span> <span class="number">30d</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~ .*\.(js|css)$</span> &#123;</span><br><span class="line">  <span class="attribute">expires</span> <span class="number">10d</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Cache-control：通过add_header来设置</p>
+</li>
+</ol>
+<ul>
+<li><p>no-store</p>
+<p>彻底禁用缓冲，所有内容都不会被缓存到缓存或临时文件中。</p>
+</li>
+<li><p>no-cache</p>
+<p>在浏览器使用缓存前，会往返对比ETag，如果ETag没变，返回304，则使用缓存。</p>
+</li>
+<li><p>public</p>
+<p>所有内容都将被缓存（客户端和代理服务器都可缓存）</p>
+</li>
+<li><p>private</p>
+<p>内容只缓存到私有缓存中（仅客户端可以缓存，代理服务器不可缓存）</p>
+</li>
+<li><p>max-age=xxx</p>
+<p>缓存的内容将在 xxx 秒后失效，这个选项只在HTTP1.1可用，并如果和Last-Modified一起使用时，优先级较高。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">  <span class="attribute">index</span> index.html;</span><br><span class="line">  <span class="attribute">try_files</span> $uri $uri/ /index.html;</span><br><span class="line">  <span class="attribute">add_header</span> Cache-Control <span class="literal">no</span>-cache;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p><strong><em>server</em></strong>指令可定义一个虚拟主机</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  listen $port; // 定义虚拟主机端口</span><br><span class="line">  server_name $server_name; // 服务名称</span><br><span class="line">  root $root_dir; // 根目录</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><em>location</em></strong>区段：与客户端返回的URI进行匹配，匹配成功后进入location配置中处理请求</p>
+<p>语法：location 修饰符 pattern {}</p>
+<ol>
+<li><p>无修饰符，以指定模式开头进行匹配</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> /aaa &#123;&#125;  </span><br></pre></td></tr></table></figure></li>
+<li><p>= 修饰符，精确匹配</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> = /aaa &#123;&#125; </span><br></pre></td></tr></table></figure></li>
+<li><p>~ 修饰符，正则表达式区分大小写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location ~ &#x2F;aaa &#123;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>~* 修饰符，正则表达式不区分大小写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location ~* &#x2F;aaa &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="3-nginx配置"><a href="#3-nginx配置" class="headerlink" title="3. nginx配置"></a>3. nginx配置</h3><ul>
+<li><p>前后端分离部署</p>
+<p><img src="/img/nginx/image-20200901001538807.png" alt="image-20200901001538807"></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">8082</span>;</span><br><span class="line">  <span class="attribute">server_name</span> dt-con-paltform-front;</span><br><span class="line">  <span class="attribute">root</span> /dtstack/front/dt-con-platform-front/dist;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">index</span> index.html;</span><br><span class="line">    <span class="attribute">try_files</span> $uri $uri/ /index.html;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> /api/v1/front/ &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://172.16.8.194:8006;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="attribute">location</span> /v3/place/ &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://restapi.amap.com;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>负载均衡</p>
+<p><img src="/img/nginx/image-20200831233609801.png" alt="image-20200831233609801"></p>
+<ul>
+<li><p>负载均衡优缺点</p>
+<p>缺点：需要占用一定数量的服务器资源</p>
+<p>优点：提高系统的稳定性</p>
+<ul>
+<li>分发前端请求，减少单个后端服务的负载量</li>
+<li>单台服务器挂掉了，不影响系统整体功能的使用</li>
+</ul>
+</li>
+<li><p>负载均衡请求分发机制：</p>
+<ul>
+<li><p>轮询</p>
+<p>每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除</p>
+</li>
+<li><p>服务器权重</p>
+<p>weight权重，权重越大，表示访问几率越大，用于后端服务器性能不均的情况</p>
+</li>
+<li><p>ip_hash</p>
+<p>对ip进行hash处理，同一个ip发出的请求被分发到固定的服务器，可以解决后端session问题</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> loader-server &#123;</span><br><span class="line">  <span class="attribute">server</span> localhost:<span class="number">8000</span>;</span><br><span class="line">  <span class="attribute">server</span> localhost:<span class="number">8001</span>;</span><br><span class="line">  <span class="attribute">server</span> localhost:<span class="number">8002</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">8004</span>;</span><br><span class="line">  <span class="attribute">server_name</span> loader;</span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://loader-server;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure></li>
+</ul>
+</div><div class="tags"><a href="/tags/nginx/"><i class="fa fa-tag"></i>nginx</a><a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/"><i class="fa fa-tag"></i>项目部署</a></div><div class="post-nav"><a class="pre" href="/2021-03-21/%E5%9B%BE%E8%A1%A8%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">图表数据格式</a><a class="next" href="/2021-03-21/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</a></div><div id="SOHUCS" sid="1616257736566"></div><script>(function(){var appid='cyviQPbMk';var conf='prod_05b30768a3e1678744671be122542ed1';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>')}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})})}})()
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://zhangzhengsmiling.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" style="font-size: 15px;">项目部署</a> <a href="/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" style="font-size: 15px;">单点登录</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96/" style="font-size: 15px;">记忆化</a> <a href="/tags/%E5%B0%BE%E9%80%92%E5%BD%92/" style="font-size: 15px;">尾递归</a> <a href="/tags/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" style="font-size: 15px;">斐波那契数列</a> <a href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">单元测试</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/" style="font-size: 15px;">服务端渲染</a> <a href="/tags/server-side-render/" style="font-size: 15px;">server-side render</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" style="font-size: 15px;">二叉搜索树</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%AE%97%E6%B3%95/" style="font-size: 15px;">随机化算法</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021-03-21/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/">服务端渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2021-03-21/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/">单点登录</a></li><li class="post-list-item"><a class="post-list-link" href="/2021-03-21/%E5%9B%BE%E8%A1%A8%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">图表数据格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2021-03-21/nginx/">Nginx简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2021-03-21/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2021-03-21/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/1970-01-01/%E4%BB%8E%E7%AE%80%E5%8D%95%E7%9A%84case%E8%AE%B2%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96--%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">从简单的case讲算法优化--斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/1970-01-01/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">二叉搜索树</a></li><li class="post-list-item"><a class="post-list-link" href="/1970-01-01/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">优先队列</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://github.com/zhangzhengsmiling" title="github" target="_blank">github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">zhangzhengsmiling.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
