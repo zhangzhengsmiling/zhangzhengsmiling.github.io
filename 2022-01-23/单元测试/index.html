@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>单元测试 | zhangzhengsmiling</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">单元测试</h1><a id="logo" href="/.">zhangzhengsmiling</a><p class="description">stand on eminence and become farsighted</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">单元测试</h1><div class="post-meta">2022-01-23<span> | </span><span class="category"><a href="/categories/%E6%B5%8B%E8%AF%95/">测试</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 1.2k</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i><span class="post-count"> 4</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="ds-thread-count" href="/2022-01-23/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/#SOHUCS"><span id="changyan_count_unit" style="font-size: 15px; color: #6E7173;">0</span><span> 条评论</span></a><script src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js" async></script><div class="post-content"><p>内容如题</p>
+<a id="more"></a>
+<h1 id="Jest"><a href="#Jest" class="headerlink" title="Jest"></a>Jest</h1><h3 id="globals-API"><a href="#globals-API" class="headerlink" title="globals  API"></a><a target="_blank" rel="noopener" href="https://facebook.github.io/jest/docs/en/api.html">globals</a>  API</h3><ul>
+<li>describe(name, fn)：描述块，讲一组功能相关的测试用例组合在一起</li>
+<li>it(name, fn, timeout)：别名test，用来放测试用例</li>
+<li>afterAll(fn, timeout)：所有测试用例跑完以后执行的方法</li>
+<li>beforeAll(fn, timeout)：所有测试用例执行之前执行的方法</li>
+<li>afterEach(fn)：在每个测试用例执行完后执行的方法</li>
+<li>beforeEach(fn)：在每个测试用例执行之前需要执行的方法</li>
+</ul>
+<h3 id="常见断言"><a href="#常见断言" class="headerlink" title="常见断言"></a><a target="_blank" rel="noopener" href="https://facebook.github.io/jest/docs/zh-Hans/expect.html">常见断言</a></h3><ol>
+<li>expect(value)：要测试一个值进行断言的时候，要使用expect对值进行包裹</li>
+<li>toBe(value)：使用Object.is来进行比较，如果进行浮点数的比较，要使用toBeCloseTo</li>
+<li>not：用来取反</li>
+<li>toEqual(value)：用于对象的深比较</li>
+<li>toMatch(regexpOrString)：用来检查字符串是否匹配，可以是正则表达式或者字符串</li>
+<li>toContain(item)：用来判断item是否在一个数组中，也可以用于字符串的判断</li>
+<li>toBeNull(value)：只匹配null</li>
+<li>toBeUndefined(value)：只匹配undefined</li>
+<li>toBeDefined(value)：与toBeUndefined相反</li>
+<li>toBeTruthy(value)：匹配任何使if语句为真的值</li>
+<li>toBeFalsy(value)：匹配任何使if语句为假的值</li>
+<li>toBeGreaterThan(number)： 大于</li>
+<li>toBeGreaterThanOrEqual(number)：大于等于</li>
+<li>toBeLessThan(number)：小于</li>
+<li>toBeLessThanOrEqual(number)：小于等于</li>
+<li>toBeInstanceOf(class)：判断是不是class的实例</li>
+<li>anything(value)：匹配除了null和undefined以外的所有值</li>
+<li>resolves：用来取出promise为fulfilled时包裹的值，支持链式调用</li>
+<li>rejects：用来取出promise为rejected时包裹的值，支持链式调用</li>
+<li>toHaveBeenCalled()：用来判断mock function是否被调用过</li>
+<li>toHaveBeenCalledTimes(number)：用来判断mock function被调用的次数</li>
+<li>assertions(number)：验证在一个测试用例中有number个断言被调用</li>
+<li>extend(matchers)：自定义一些断言</li>
+</ol>
+<p>jest.fn</p>
+<p>Jest.mock</p>
+<h1 id="Enzyme"><a href="#Enzyme" class="headerlink" title="Enzyme"></a>Enzyme</h1><h3 id="三种渲染方法"><a href="#三种渲染方法" class="headerlink" title="三种渲染方法"></a>三种渲染方法</h3><ol>
+<li>shallow：浅渲染，是对官方的Shallow Renderer的封装。将组件渲染成虚拟DOM对象，只会渲染第一层，子组件将不会被渲染出来，使得效率非常高。不需要DOM环境， 并可以使用jQuery的方式访问组件的信息</li>
+<li>render：静态渲染，它将React组件渲染成静态的HTML字符串，然后使用Cheerio这个库解析这段字符串，并返回一个Cheerio的实例对象，可以用来分析组件的html结构</li>
+<li>mount：完全渲染，它将组件渲染加载成一个真实的DOM节点，用来测试DOM API的交互和组件的生命周期。用到了jsdom来模拟浏览器环境</li>
+</ol>
+<p>三种方法中，shallow和mount因为返回的是DOM对象，可以用simulate进行交互模拟，而render方法不可以。一般shallow方法就可以满足需求，如果需要对子组件进行判断，需要使用render，如果需要测试组件的生命周期，需要使用mount方法。</p>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li>simulate(event, mock)：模拟事件，用来触发事件，event为事件名称，mock为一个event object</li>
+<li>instance()：返回组件的实例</li>
+<li>find(sel1·ector)：根据选择器查找节点，selector可以是CSS中的选择器，或者是组件的构造函数，组件的display name等</li>
+<li>at(index)：返回一个渲染过的对象</li>
+<li>get(index)：返回一个react node，要测试它，需要重新渲染</li>
+<li>contains(nodeOrNodes)：当前对象是否包含参数重点 node，参数类型为react对象或对象数组</li>
+<li>text()：返回当前组件的文本内容</li>
+<li>html()： 返回当前组件的HTML代码形式</li>
+<li>props()：返回根组件的所有属性</li>
+<li>prop(key)：返回根组件的指定属性</li>
+<li>state()：返回根组件的状态</li>
+<li>setState(nextState)：设置根组件的状态</li>
+<li>setProps(nextProps)：设置根组件的属性</li>
+</ol>
+<p>单元测试也有测试策略：在 React 的典型架构下，一个典型的测试策略为：</p>
+<ul>
+<li>reducer、selector 层的逻辑代码要求 100% 覆盖</li>
+<li>saga（副作用）层：<strong>是否拿到了正确的参数</strong>、<strong>是否调用了正确的 API</strong>、<strong>是否保存了正确的数据</strong>、<strong>业务逻辑</strong>、<strong>异常逻辑</strong>五个层面要求 100%覆盖</li>
+<li>action 层选择性覆盖：可不测</li>
+<li>utils 层的纯函数要求 100% 覆盖</li>
+<li>组件层：<ul>
+<li><strong>分支渲染逻辑必测</strong>、<strong>事件、交互调用</strong>要求 100%覆盖；</li>
+<li><code>@connect</code> 过的高阶组件不测</li>
+<li>纯 UI 一般不测</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ol>
+<li>跨组件交互的逻辑应该怎么测试</li>
+<li>函数组件内部函数逻辑该如何进行测试</li>
+<li>mock, spyOn</li>
+<li><a target="_blank" rel="noopener" href="https://zh-hans.reactjs.org/docs/testing-recipes.html">React测试技巧</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/enzymejs/enzyme/issues/2011">enzyme对于hooks组件支持checklist</a></li>
+</ol>
+<hr>
+<p>React-test-library &amp; Enzyme</p>
+<p><a target="_blank" rel="noopener" href="https://medium.com/wesionary-team/react-testing-library-vs-enzyme-afd29db380ac">React Testing Library Vs. Enzyme</a></p>
+<ul>
+<li>测试理念不同,rtl基于dom元素进行测试，不依赖于props和state;Enzyme基于组件实例测试</li>
+<li>rtl的选择器类型与dom中的选择器不太一致</li>
+</ul>
+</div><div class="tags"><a href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"><i class="fa fa-tag"></i>单元测试</a></div><div class="post-nav"><a class="pre" href="/2022-10-09/%E4%BB%8E%E7%AE%80%E5%8D%95%E7%9A%84case%E8%AE%B2%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96--%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">从简单的case讲算法优化--斐波那契数列</a><a class="next" href="/2021-09-11/%E5%9B%BE%E8%A1%A8%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">图表数据格式</a></div><div id="SOHUCS" sid="1642897513746"></div><script>(function(){var appid='cyviQPbMk';var conf='prod_05b30768a3e1678744671be122542ed1';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>')}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})})}})()
+</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML" async></script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://zhangzhengsmiling.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 15px;">单元测试</a> <a href="/tags/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/" style="font-size: 15px;">单点登录</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/" style="font-size: 15px;">服务端渲染</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 15px;">动画</a> <a href="/tags/canvas/" style="font-size: 15px;">canvas</a> <a href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" style="font-size: 15px;">二叉搜索树</a> <a href="/tags/%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96/" style="font-size: 15px;">算法优化</a> <a href="/tags/%E6%A0%91/" style="font-size: 15px;">树</a> <a href="/tags/%E5%A0%86/" style="font-size: 15px;">堆</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023-12-30/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/">服务端渲染</a></li><li class="post-list-item"><a class="post-list-link" href="/2023-11-03/%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86/">树的遍历</a></li><li class="post-list-item"><a class="post-list-link" href="/2023-06-14/canvas%E5%8A%A8%E7%94%BB%E5%9F%BA%E7%A1%80/">canvas动画基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2023-04-30/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">二叉搜索树</a></li><li class="post-list-item"><a class="post-list-link" href="/2022-12-21/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">优先队列</a></li><li class="post-list-item"><a class="post-list-link" href="/2022-10-09/%E4%BB%8E%E7%AE%80%E5%8D%95%E7%9A%84case%E8%AE%B2%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96--%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">从简单的case讲算法优化--斐波那契数列</a></li><li class="post-list-item"><a class="post-list-link" href="/2022-01-23/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2021-09-11/%E5%9B%BE%E8%A1%A8%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">图表数据格式</a></li><li class="post-list-item"><a class="post-list-link" href="/2021-09-01/nginx/">Nginx简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2020-10-10/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/">单点登录</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://github.com/zhangzhengsmiling" title="github" target="_blank">github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">zhangzhengsmiling.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
